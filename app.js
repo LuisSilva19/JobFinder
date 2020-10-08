@@ -15,11 +15,12 @@ app.listen(PORT, function(){
 app.use(bodyParser.urlencoded({extended:false}));
 
 //handle bars
-app.set('views', path.join(_dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
+//static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // db conexao
 db
@@ -33,7 +34,7 @@ db
 
 // rotas
 app.get('/', (req,res) => {
-    res.send("ESTA FUNCIONANDO ");
+    res.render('index');
 });
 
 //jobs routes
